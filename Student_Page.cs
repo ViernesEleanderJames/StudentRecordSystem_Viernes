@@ -49,18 +49,41 @@ namespace StudentRecordSystem_Viernes
                 dataGridView.AllowUserToResizeRows = false;
 
                 // Adjust column width to fit content
-                dataGridView.Columns[0].Width = 50;  // For studentId column
+                dataGridView.Columns[0].Width = 50;  
                 dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;  // Adjusts First Name column
                 dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;  // Adjusts Last Name column
                 dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;  // Adjusts Course column
 
-                // Add the View Button Column
+                
                 DataGridViewButtonColumn viewButton = new DataGridViewButtonColumn();
                 viewButton.Name = "ViewBtn";
                 viewButton.HeaderText = "Action";
                 viewButton.Text = "VIEW";
                 viewButton.UseColumnTextForButtonValue = true;
                 dataGridView.Columns.Add(viewButton);
+
+                // Apply styling changes to improve appearance
+                dataGridView.BackgroundColor = System.Drawing.Color.FromArgb(250, 250, 250); // Soft light background
+                dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None; // Remove borders
+                dataGridView.EnableHeadersVisualStyles = false; // Disable default header style
+                dataGridView.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(30, 60, 150); // Muted blue header background
+                dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(255, 255, 204); // Soft yellow text in headers
+                dataGridView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold); // Bold header text
+
+                // Alternate row color for better readability
+                dataGridView.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(255, 255, 204); // Soft light yellow rows
+                dataGridView.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(173, 216, 230); // Soft light blue selection
+                dataGridView.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.FromArgb(30, 60, 150); // Dark blue text when selecting a row
+
+                // Cell padding and text alignment
+                dataGridView.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+                dataGridView.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(5);
+
+                // Row height adjustments
+                dataGridView.RowTemplate.Height = 40; // Set row height for better visual spacing
+
+                // Remove the gridlines
+                dataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             }
             catch (Exception ex)
             {
@@ -78,7 +101,7 @@ namespace StudentRecordSystem_Viernes
             {
                 int studentId = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells["studentId"].Value);
 
-                // Open the StudentPage_Individual form with the selected studentId
+                
                 StudentPage_Individual individualForm = new StudentPage_Individual(studentId);
                 individualForm.Show();
             }
